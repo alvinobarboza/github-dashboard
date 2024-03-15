@@ -40,10 +40,7 @@ function RepoDetails({ repo }) {
                 Linguagem:{' '}
                 <span className="badge bg-primary">{repo.language}</span>
             </p>
-            <Link
-                className="nav-item nav-link"
-                to={`/contributors/${repo.owner.login}/${repo.name}`}
-            >
+            <Link to={`/contributors/${repo.owner.login}/${repo.name}`}>
                 Pessoas que contribuiram
             </Link>
         </div>
