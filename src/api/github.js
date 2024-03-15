@@ -44,6 +44,41 @@ export async function searchRepos(query) {
 }
 
 /**
+ * @param {string} owner
+ * @param {string} repo
+ * @returns {Promise<User[]>} */
+export async function getContributors(owner, repo) {
+    const repos = await octokit.request(
+        'GET /repos/{owner}/{repo}/contributors',
+        {
+            owner: owner,
+            repo: repo,
+            headers: headers,
+        }
+    );
+    if (repos.status !== 200) {
+        return [];
+    }
+    return repos.data;
+}
+
+/**
+ * @param {string} owner
+ * @param {string} repo
+ * @returns {Promise<RepoData>} */
+export async function getRepo(owner, repo) {
+    const repos = await octokit.request('GET /repos/{owner}/{repo}', {
+        owner: owner,
+        repo: repo,
+        headers: headers,
+    });
+    if (repos.status !== 200) {
+        return null;
+    }
+    return repos.data;
+}
+
+/**
  * @typedef {object} SearchResult
  * @property {number} total_count
  * @property {boolean} incomplete_results

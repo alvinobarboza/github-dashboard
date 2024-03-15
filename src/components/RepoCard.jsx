@@ -5,9 +5,9 @@ import RepoHeader from './RepoHeader';
 const cardStyle = { marginTop: '20px' };
 
 /**
- * @param {{repo:import('../api/github').RepoData, showDetails: boolean} props
+ * @param {{repo:import('../api/github').RepoData, showDetails: boolean, clickEnabled: boolean}} props
  */
-function RepoCard({ repo, showDetails = true }) {
+function RepoCard({ repo, showDetails = true, clickEnabled = true }) {
     /**@type {[boolean, React.Dispatch<boolean>]} */
     const [show, setShow] = useState(showDetails);
 
@@ -18,7 +18,10 @@ function RepoCard({ repo, showDetails = true }) {
     return (
         <div className="container">
             <div className="card" style={cardStyle}>
-                <RepoHeader repo={repo} onClick={handleClick} />
+                <RepoHeader
+                    repo={repo}
+                    onClick={() => clickEnabled && handleClick()}
+                />
                 {show && <RepoDetails repo={repo} />}
             </div>
         </div>

@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import start from '../assets/star.svg';
 
 const topicsStyle = { marginBottom: '10px' };
@@ -39,6 +40,12 @@ function RepoDetails({ repo }) {
                 Linguagem:{' '}
                 <span className="badge bg-primary">{repo.language}</span>
             </p>
+            <Link
+                className="nav-item nav-link"
+                to={`/contributors/${repo.owner.login}/${repo.name}`}
+            >
+                Pessoas que contribuiram
+            </Link>
         </div>
     );
 }
